@@ -1,0 +1,98 @@
+@model Users
+@using SEP_Web.Keys
+@{
+    ViewData["Title"] = "Editar usuário";
+}
+
+<div class="container mt-3">
+
+    <h1 class="text-center">@ViewData["Title"]</h1>
+
+    <form asp-controller="Users" asp-action="Edit" method="post">
+
+        <div class="row">
+
+            <div class="col-md-6 register-col">
+
+                <div id="hidden-id" class="form-group">
+                    <label for="user-id" hidden>ID:</label>
+                    <input type="hidden" class="form-control" id="user-id" name="user-id" asp-for="Id" />
+                </div>
+
+                <div class="form-group">
+                    <label for="user-masp">MASP:</label>
+                    <input type="number" class="form-control" id="user-masp" name="masp" asp-for="Masp" />
+                    @Html.ValidationMessageFor(x => x.Masp)
+                </div>
+
+                <div class="form-group">
+                    <label for="user-fullName">Nome Completo:</label>
+                    <input type="text" class="form-control" id="user-fullName" name="fullName" asp-for="FullName" />
+                    @Html.ValidationMessageFor(x => x.FullName)
+                </div>
+
+                <div id="login-input" class="form-group">
+
+                    <label for="user-login">Login:</label>
+                    <input type="text" class="form-control" id="user-login" name="login" asp-for="Login" />
+                    @Html.ValidationMessageFor(x => x.Login)
+
+                </div>
+
+
+                <div class="form-group">
+                    <label for="user-password">Senha:</label>
+                    <input type="password" class="form-control" id="user-password" name="password" asp-for="Password" />
+                    @Html.ValidationMessageFor(x => x.Password)
+                </div>
+
+            </div>
+
+            <div class="col-md-6 register-col">
+
+                <div class="form-group">
+                    <label for="user-email">E-mail:</label>
+                    <input type="email" class="form-control" id="user-email" name="email" asp-for="Email" />
+                    @Html.ValidationMessageFor(x => x.Email)
+                </div>
+
+                <div class="form-group">
+                    <label for="user-phone">Telefone:</label>
+                    <input type="tel" class="form-control" id="user-phone" name="phone" asp-for="Phone" />
+                    @Html.ValidationMessageFor(x => x.Phone)
+                </div>
+
+                <div class="form-group">
+                    <label for="user-office">Cargo:</label>
+                    <input type="text" class="form-control" id="user-office" name="publicOffice" asp-for="PublicOffice" />
+                    @Html.ValidationMessageFor(x => x.PublicOffice)
+                </div>
+
+            </div>
+
+            <div class="col-md-12 mt-3">
+
+                <select class="form-control w-100" name="userType" id="user-type" asp-for="UserType"
+                    aria-label="Default select example">
+
+                    <option value="" selected>Selecione o nível de acesso do usuário ...</option>
+                    <option value="@UserTypeEnum.User_Admin" >Administrador</option>
+                    <option value="@UserTypeEnum.User_Evaluator" >Avaliador</option>
+                    <option value="@UserTypeEnum.User_Server" >Servidor</option>
+
+                </select>
+
+                @Html.ValidationMessageFor(x => x.UserType)
+
+            </div>
+
+        </div>
+
+        <div class="form-group mb-3 mt-3">
+            <button type="submit" class="btn btn-primary">Editar</button>
+            <a class="btn btn-secondary" asp-controller="Users" asp-action="Index">Voltar</a>
+        </div>
+
+    </form>
+
+</div>
